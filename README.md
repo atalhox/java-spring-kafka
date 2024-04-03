@@ -14,7 +14,7 @@ To meet the functionality of real-time data streaming and processing, the applic
 
 ## Project Requirements
 
-- [X] Real-time data streaming;
+- [ ] Real-time data streaming;
 - [ ] Data processing and analysis;
 - [ ] Scalability and fault tolerance.
 
@@ -38,7 +38,7 @@ Make sure to set up your environment with Java, Spring Boot, and Apache Kafka. *
 Add kafka as an available host in /etc/hosts: 
 
 ```shell
-
+127.0.0.1   kafka
 ``` 
 
 ### Apache Kafka
@@ -57,6 +57,30 @@ To run the application, execute the command below in a terminal:
 $ ./mvnw spring-boot:run 
 ```
 
+## Making a request
+
+Send this request as curl: 
+
+```shell
+    curl --location 'http://kafka:8080/kafka/my-topic' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "message": "Apache Kafka is awesome"
+    }'
+```
+
+Considering: 
+- my-topic: as the Producer/Consumer Kafka listening topic
+- message: the message to be sent
+
+## Check the result
+
+You can check the sent messages running this:
+
+```shell
+docker exec <your-container-name> /bin/kafka-console-consumer --bootstrap-server kafka:9092 --topic my-topic --from-beginning
+```
+
 ## How to Contribute
 Please refer to the contribution guidelines for detailed instructions on sending pull requests.
 
@@ -70,7 +94,7 @@ Luis Felipe Brum is the author of this project. He is a Backend developer with e
 
 ## Colaborate
 
-| Colaborator   | Github |
-|--------------|:----------------:|
-| Luis Felipe Brum | atalhox |
+| Colaborator      | Github    |
+|------------------|:---------:|
+| Luis Felipe Brum | atalhox   |
 
